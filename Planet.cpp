@@ -22,14 +22,25 @@ void planet:: addSattelits() {
     nrSatellites++;
 }
 void planet::Calculum(){
-
+try {
     std::cout << "All celestial bodies pulls on all objects with a force of gravity downward toward the center."<<std::endl;
     std::cout << "Find out with what force you will be attracted to this planet by entering your weight in kg:  "<<std::endl;
+
     massPers=0;
     std::cin >> massPers;
     weightForce = massPers*gravitationalAcceleration;
-    std::cout <<"The force of gravity on the required planet is: "<< weightForce << " N"<<std::endl;
+    if (weightForce > 0 ){
+        std::cout <<"The force of gravity on the required planet is: "<< weightForce << " N"<<std::endl;
+    } else {
+        throw (weightForce);
+    }
 }
+catch (float weightForce) {
+    cout <<"The weight force cannot be 0 ";
+
+}
+}
+
 void planet ::printPlanet(std::ostream &os) {
 
     os << std::endl;
