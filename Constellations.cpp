@@ -1,4 +1,5 @@
 #include "Constellations.h"
+#include "constellationsBuilder.h"
 using namespace std;
 constellations::constellations(){
     this->name = name;
@@ -12,19 +13,15 @@ constellations::constellations(string name, string hemisphere, string form )
     this->form = form;
     this->hemisphere = hemisphere;
 }
+constellationsBuilder constellations::create(string name) { return constellationsBuilder{name}; }
 
-void constellations :: constellationsInform(ostream &os) {
-    os << "The name constellation: ";
-    os << name << endl;
-    os << "The shape of the constellation: ";
-    os << form << endl;
-    os << "The hemisphere in which the constellation is located: ";
-    os << hemisphere << endl;
-}
-ostream& operator<<(ostream& os, constellations& cst)
+ostream& operator<<(ostream& os, const constellations& cst)
 {
-    cst.constellationsInform(os);
-    return os;
+
+    return os << cst.name
+    << "The shape of the constellation: "<< cst.form << endl<< "The hemisphere in which the constellation is located: "
+    << cst.hemisphere << endl;
 }
 
+constellations::constellations(const string &name) : name(name) {}
 
