@@ -14,13 +14,23 @@ star::star(std::string name): AstronomicalObject(name,mass, circumference, tempe
 }
 
 void star :: Calculum(){
+    try {
+        std::cout << "All celestial bodies pulls on all objects with a force of gravity downward toward the center."<<std::endl;
+        std::cout << "Find out with what force you will be attracted to this star by entering your weight in kg:  "<<endl;
+        massPers=0;
+        std::cin >> massPers;
+        weightForce = massPers*gravitationalAcceleration;
+        if (weightForce > 0 ){
+            std::cout <<"The force of gravity on the required star is: "<< weightForce << std::endl;
+        } else {
+            throw (weightForce);
+        }
+    }
+    catch (float weightForce) {
+        cout <<"The weight force cannot be 0 ";
 
-    std::cout << "All celestial bodies pulls on all objects with a force of gravity downward toward the center."<<endl;
-    std::cout << "Find out with what force you will be attracted to this star by entering your weight in kg:  "<<endl;
-    massPers = 0;
-    std::cin >> weightForce;
-    weightForce = massPers*gravitationalAcceleration;
-    std::cout <<"The force of gravity on the required star is: "<< weightForce << std::endl;
+    }
+
 }
 void star :: InfStar (std::ostream& os) {
     os << std::endl;
