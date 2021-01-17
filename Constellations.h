@@ -1,9 +1,7 @@
-#ifndef SPACE_CONSTELLATIONS_H
-#define SPACE_CONSTELLATIONS_H
 #include <string>
 #include<iostream>
 using namespace std;
-
+class constellationsBuilder;
 class constellations{
 private:
     string hemisphere;
@@ -14,10 +12,14 @@ private:
 public:
     constellations(string name, string hemisphere, string form );
 
-public:
-    void constellationsInform (ostream& os);
 
-    friend ostream& operator<<(ostream& os, const constellations& );
+
+    constellations(const string &name);
+
+public:
+    friend ostream& operator<<(ostream& os, const constellations& obj );
+    friend class constellationsBuilder;
+    static constellationsBuilder create(std::string name);
 };
 
 
