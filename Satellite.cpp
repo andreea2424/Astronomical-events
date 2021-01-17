@@ -11,16 +11,25 @@ satellite::satellite(std::string name, double temperature1, float gravity, doubl
     this->gravitationalAcceleration= gravitationalAcceleration;
 
 }
-
 void satellite::Calculum(){
-    std::cout << "All celestial bodies pulls on all objects with a force of gravity downward toward the center."<<std::endl;
-    std::cout << "Find out with what force you will be attracted to this satellite by entering your weight in kg:  "<<std::endl;
-    massPers = 0;
-    std::cin >> massPers;
-    weightForce = massPers*gravitationalAcceleration;
-    std::cout <<"The force of gravity on the required satellite is: "<< weightForce <<"N" <<std::endl;
-}
+    try {
+        std::cout << "All celestial bodies pulls on all objects with a force of gravity downward toward the center."<<std::endl;
+        std::cout << "Find out with what force you will be attracted to this satellite by entering your weight in kg:  "<<std::endl;
 
+        massPers=0;
+        std::cin >> massPers;
+        weightForce = massPers*gravitationalAcceleration;
+        if (weightForce > 0 ){
+            std::cout <<"The force of gravity on the required satellite is: "<< weightForce <<"N" <<std::endl;
+        } else {
+            throw (weightForce);
+        }
+    }
+    catch (float weightForce) {
+        cout <<"The weight force cannot be 0 ";
+
+    }
+}
 
 void satellite :: printsatelitte(std::ostream& os) {
     os << std::endl;
